@@ -1,15 +1,25 @@
 // Imports
 import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./database/connection.mjs";
+import { globalErr, log } from "./middleware/middleware.mjs";
 
 // Setup
-const PORT = 3000;
+dotenv.config();
+const PORT = process.env.PORT || 3001
 const app = express();
 
+// Database Connection
+connectDB();
+
 // Middleware
+app.use(express.json());
+app.use(log);
 
 // Routes
 
 // Global Error Handling
+app.use(globalErr);
 
 // Listener
 app.listen(PORT, () => {
