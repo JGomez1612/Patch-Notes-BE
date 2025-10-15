@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./database/connection.mjs";
 import { globalErr, log } from "./middleware/middleware.mjs";
 import userRoutes from './routes/userRoutes.mjs';
+import reviewRoutes from "./routes/reviewRoutes.mjs";
 
 // Setup
 dotenv.config();
@@ -19,6 +20,8 @@ app.use(log);
 
 // Routes
 app.use('/api/user', userRoutes);
+app.use('/api/review', reviewRoutes);
+
 
 // Global Error Handling
 app.use(globalErr);
