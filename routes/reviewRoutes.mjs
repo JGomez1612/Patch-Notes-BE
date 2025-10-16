@@ -22,7 +22,7 @@ router
     // Read
     .get(async (req, res) => {
         try {
-            let allReviews = await review.find({})
+            let allReviews = await review.find({}).populate('userId', 'username')
 
             res.json(allReviews);
         } catch (err) {

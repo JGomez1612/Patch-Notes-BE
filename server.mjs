@@ -5,6 +5,7 @@ import connectDB from "./database/connection.mjs";
 import { globalErr, log } from "./middleware/middleware.mjs";
 import userRoutes from './routes/userRoutes.mjs';
 import reviewRoutes from "./routes/reviewRoutes.mjs";
+import cors from 'cors';
 
 // Setup
 dotenv.config();
@@ -17,6 +18,7 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(log);
+app.use(cors());
 
 // Routes
 app.use('/api/user', userRoutes);
