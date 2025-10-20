@@ -9,7 +9,7 @@ router
     .route("/")
     .post(
         [
-            check("userName", "Please include a valid username").isLength({ min: 4 }),
+            check("username", "Please include a valid username").isLength({ min: 4 }),
             check("password", "Password must be at least 6 characters long").isLength(
                 { min: 6 }
             ),
@@ -17,7 +17,7 @@ router
         ],
         userCTRL.registerUser
     );
-
+    
 // Update and Delete User
 router
     .route("/:id")

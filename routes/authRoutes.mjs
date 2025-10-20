@@ -12,8 +12,8 @@ router
   .get(auth, userCTRL.getUserInfo)
   .post(
     [
-      check("password", "Please Include a password").not().isEmpty(),
       check("email", "Please include an email").not().isEmpty(),
+      check("password", "Please Include a password").not().isEmpty(),
     ],
     userCTRL.loginUser
   );

@@ -92,6 +92,8 @@ const loginUser = async (req, res) => {
         const payload = {
             user: {
                 id: user._id,
+                username: user.username,
+                email: user.email,
             },
         };
 
@@ -102,9 +104,15 @@ const loginUser = async (req, res) => {
             (err, token) => {
                 if (err) throw err;
 
-                res.status(200).json({ token });
-            }
-        );
+                res.status(200).json({
+                    token,
+                    user: {
+                        id: user._id,
+                        username: user.username,
+                        email: user.email,
+                    },
+                });
+            });
     } catch (err) {
         console.error(err.message)
         res.status(500).json({ errors: [{ msg: "Server Error" }] });
