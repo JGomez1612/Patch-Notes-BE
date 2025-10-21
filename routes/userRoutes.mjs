@@ -17,10 +17,16 @@ router
         ],
         userCTRL.registerUser
     );
-    
+
+// Get user profile by ID (or current user via request body)
+router
+    .route("/profile")
+    .post(userCTRL.getUserProfile);
+
 // Update and Delete User
 router
     .route("/:id")
     .put(userCTRL.updateUser)
     .delete(userCTRL.deleteUser);
+    
 export default router;

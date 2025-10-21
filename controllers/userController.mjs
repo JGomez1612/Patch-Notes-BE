@@ -1,4 +1,5 @@
 import User from "../models/userSchema.mjs";
+import Review from "../models/reviewSchema.mjs";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import dotenv from 'dotenv';
@@ -66,6 +67,22 @@ const getUserInfo = async (req, res) => {
         res.status(500).json({ errors: [{ msg: "Server Error" }] });
     }
 };
+
+const getUserProfile = async (req, res) => {
+    try {
+        const { userId } = req.body;
+
+        const user = await User.findById(userId).select('-password');
+        if (!user) return res.status(404).json({ msg: "User not found" });
+
+        const reviews = await Review.find({ userId }).sort({ createdAt: -1 }).limit(2);
+
+        res.json({ user, reviews })
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: "Server Error" })
+    }
+}
 
 const loginUser = async (req, res) => {
     const errors = validationResult(req);
@@ -167,4 +184,4 @@ const deleteUser = async (req, res) => {
     }
 }
 
-export default { registerUser, getUserInfo, loginUser, updateUser, deleteUser };
+export default { registerUser, getUserInfo, getUserProfile, loginUser, updateUser, deleteUser };
