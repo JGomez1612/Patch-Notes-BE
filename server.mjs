@@ -6,6 +6,7 @@ import { globalErr, log } from "./middleware/middleware.mjs";
 import userRoutes from './routes/userRoutes.mjs';
 import reviewRoutes from "./routes/reviewRoutes.mjs";
 import authRoutes from "./routes/authRoutes.mjs";
+import gameRoutes from "./routes/gameRoutes.mjs";
 import cors from 'cors';
 
 // Setup
@@ -25,7 +26,7 @@ app.use(cors());
 app.use('/api/user', userRoutes);
 app.use('/api/review', reviewRoutes);
 app.use('/api/auth', authRoutes);
-
+app.use("/api/games", gameRoutes);
 
 // Global Error Handling
 app.use(globalErr);

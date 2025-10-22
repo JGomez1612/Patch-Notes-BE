@@ -8,7 +8,7 @@ const reviewSchema = new mongoose.Schema(
             required: true
         },
         gameId: {
-            type: String,
+            type: Number,
             required: true
         },
         title: {
