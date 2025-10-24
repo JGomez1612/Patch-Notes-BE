@@ -75,7 +75,7 @@ const getUserProfile = async (req, res) => {
         const user = await User.findById(userId).select('-password');
         if (!user) return res.status(404).json({ msg: "User not found" });
 
-        const reviews = await Review.find({ userId }).sort({ createdAt: -1 }).limit(2);
+        const reviews = await Review.find({ userId }).sort({ createdAt: -1 }).limit(5);
 
         res.json({ user, reviews })
     } catch (err) {
